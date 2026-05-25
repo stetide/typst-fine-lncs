@@ -356,10 +356,16 @@
 
   set text(size: 9pt)
   if acknowledgements != none {
-    block(above: 1.5em, [*Acknowledgements.* #acknowledgements])
+    block(above: 1.5em, width: 100%, {
+      strong("Acknowledgements.")
+      acknowledgements
+    })
   }
   if interests != none {
-    block(above: 1.5em, [*Disclosure of Interests.* #interests])
+    block(above: 1.5em, width: 100%, {
+      strong("Disclosure of Interests.")
+      interests
+    })
   }
 
   // Style bibliography.
