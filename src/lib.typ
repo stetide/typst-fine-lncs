@@ -134,7 +134,7 @@
   }
 
   //// SUPER CONFIGS
-  set super(size: 8pt)
+  set super(size: 0.6em)
 
   //// FOOTNOTE CONFIGS
   show footnote.entry: set text(9pt)
@@ -142,7 +142,7 @@
     let count = counter(footnote).display(it.note.numbering)
 
     h(1mm)
-    text(count, size: 6pt)
+    text(count, size: text.size * 0.6)
     box(it.note.body, inset: (left: .3em), baseline: 100% - 2pt)
   }
   set footnote.entry(
