@@ -157,12 +157,26 @@
 
   /////  FIGURE CONFIG
   set figure.caption(separator: [. ]) // separator to .
-  show figure.caption: it => align(
-    center,
-  )[*#it.supplement #context it.counter.display()#it.separator*#it.body] // bold figure kind
+  show figure.caption: set block(width: 100%)
+  show figure.caption: set text(9pt)
+  show figure.caption: it => layout(size => {
+    let al = left
+    let cont = {
+      strong(it.supplement + " " + it.counter.display() + it.separator)
+      it.body
+    }
+
+    
+    let (width, ) = measure(cont)
+    if width <= page.width - page.margin.left - page.margin.right {
+      al = center
+    }
+
+    set align(al)
+    block(cont)
+  })
   show figure.where(kind: table): set figure.caption(position: top) // caption for table above figure
   show figure.where(kind: image): set image(width: 100%)
-  show figure: set text(9pt)
   show figure: set align(left)
   set figure(gap: 4.5mm, placement: none)
   show figure: it => {
