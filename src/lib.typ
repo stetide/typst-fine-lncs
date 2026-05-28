@@ -75,7 +75,7 @@
     bottom: 45mm,
   ))
   // set page header
-  set page(header-ascent: 3em, footer-descent: 3em)
+  set page(header-ascent: 2em, footer-descent: 2em)
   set page(
     header: context {
       let pagenumer = counter(page).get().first()
@@ -138,10 +138,18 @@
 
   //// FOOTNOTE CONFIGS
   show footnote.entry: set text(9pt)
+  show footnote.entry: it => {
+    let count = counter(footnote).display(it.note.numbering)
+
+    h(1mm)
+    text(count, size: 6pt)
+    box(it.note.body, inset: (left: .3em), baseline: 100% - 2pt)
+  }
   set footnote.entry(
+    gap: 2pt,
     separator: line(
       start: (0pt, 0pt),
-      length: 57pt,
+      length: 54pt,
       stroke: 0.5pt,
     ),
     indent: 1mm,
@@ -167,9 +175,6 @@
         or it.kind == "llncs-lemma-group"
         or it.kind == "llncs-prop-group"
     ) {
-      // Theorem-like environments bring their own vertical rhythm from the
-      // lemmify styling, so generic figure spacing would double-apply here.
-      set block(above: auto, below: auto)
       return it
     }
 
